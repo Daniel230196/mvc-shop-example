@@ -1,0 +1,32 @@
+version: "2.4"
+
+services:
+  php8.1:
+    build: ./php8.1
+    working_dir: /home/framework
+    depends_on:
+      - composer
+    tty: true
+    expose:
+      - 9000
+    ports:
+      - "8080:8080"
+    volumes_from:
+      - framework_data
+      - vendor
+  composer:
+    build: ./composer
+    tty: true
+    volumes:
+      - ./composer:/app
+      - ./../../vendor:/app/vendor
+  framework_data:
+    image: debian:jessie
+    tty: true
+    volumes:
+      - ./../:/home/framework/src
+  vendor:
+    image: debian:jessie
+    tty: true
+    volumes:
+      - ./../../vendor:/home/framework/vendor

@@ -1,0 +1,29 @@
+{% extends 'layout/main.twig' %}
+{% block content  %}
+    <h1>{{generate_url('user_login', ['tttt', 'tt2'])}}</h1>
+    <form action="">
+        <label for="login">
+            Login
+            <input name="login" type="text">
+        </label>
+        <label for="password">
+            Password
+            <input name="password" type="password">
+        </label>
+        <label for="password_confirmation">
+            Confirm password
+            <input name="password_confirmation" type="password">
+        </label>
+        <label for="phone">
+            Enter your phone
+            <input name="phone" type="text">
+        </label>
+    </form>
+    <div>
+        <span>Already have an account?</span>
+        <a href="{{ generate_url('user_login') }}">Login</a>
+    </div>
+    <script>
+
+    </script>
+{% endblock %}

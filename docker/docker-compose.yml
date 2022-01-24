@@ -1,0 +1,54 @@
+version: "2.4"
+services:
+  nginx:
+    build:
+      context: ./images/nginx
+      args:
+        host: "${HOST}"
+    ports:
+      - "80:80"
+      - "443:443"
+    expose:
+      - 80
+    depends_on:
+      - php
+    env_file: .env
+    volumes:
+      - ${DATA_PATH}/nginx:/var/log/nginx
+      - ${DATA_PATH}/nginx:/var/log/shop
+    volumes_from:
+      - project_files
+    networks:
+      default:
+        aliases:
+          - ${HOST}
+  php:
+    build: ${PHP_IMAGE_PATH}
+    tty: true
+    env_file: .env
+    working_dir: /home/shop
+    depends_on:
+      - mysql
+    ports:
+      - "9000:9000"
+    volumes_from:
+      - project_files
+  mysql:
+    image: mysql:8.0.27
+    ports:
+      - 127.0.0.1:3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+    volumes:
+      - ${DATA_PATH}/db/:/var/lib/mysql
+  project_files:
+    image: debian:jessie
+    tty: true
+    volumes:
+      - ./../:/home/shop:delegated
+  composer:
+    build: ./images/composer
+    tty: true
+    volumes:
+      - ./images/composer:/app
+      - ./../../vendor:/app/vendor

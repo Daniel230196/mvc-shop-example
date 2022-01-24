@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>{{ title }}</title>
+</head>
+<body>
+{% verbatim %}
+<div id="vue">
+    Counter: {{ counter }}
+</div>
+{% endverbatim %}
+{% block content %}
+{% endblock %}
+</body>
+<script>
+    const Counter = {
+        data() {
+            return {
+                counter: 0
+            }
+        },
+        mounted() {
+            setInterval(() => {
+                this.counter++
+            }, 1000)
+        }
+    }
+
+    Vue.createApp(Counter).mount('#vue');
+</script>
+</html>

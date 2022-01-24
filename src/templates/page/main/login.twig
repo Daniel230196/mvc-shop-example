@@ -1,0 +1,16 @@
+{% extends 'layout/main.twig' %}
+{% block content %}
+    <form id="login_form_1" action="/login" method="POST">
+        <label for="login" content="Login/Phone/Email">
+            <input name="login" type="text"/>
+        </label>
+        <label for="password" content="Password">
+            <input name="password" type="password"/>
+        </label>
+        <input type="button" value="Submit" onclick="document.getElementById('login_form_1').submit()">
+        <div>
+            <span>Have no account?</span>
+            <a href="/registration">Registration</a>
+        </div>
+    </form>
+{% endblock %}

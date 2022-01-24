@@ -1,0 +1,15 @@
+{
+  "name": "php-mvc-skelet/skeleton",
+  "description": "Simple php framework",
+  "type": "library",
+  "require": {
+    "altorouter/altorouter": "2.0.2",
+    "twig/twig": "3.*"
+  },
+  "authors": [
+    {
+      "name": "Daniel Khristolyubov",
+      "email": "dan-n-70s@mail.ru"
+    }
+  ]
+}
